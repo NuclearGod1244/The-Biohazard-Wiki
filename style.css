@@ -174,3 +174,22 @@ button:active {
     border-radius: 15px;
     text-align: left;
 }
+@keyframes criticalPulse {
+    0% {
+        color: #ff3b3b;
+        text-shadow: 0 0 5px #ff3b3b;
+    }
+    50% {
+        color: #ff0000;
+        text-shadow: 0 0 20px #ff0000;
+    }
+    100% {
+        color: #ff3b3b;
+        text-shadow: 0 0 5px #ff3b3b;
+    }
+}
+
+.status-critical {
+    animation: criticalPulse 1s infinite;
+    text-shadow: 0 0 30px #ff0000;
+}
