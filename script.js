@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.3.4";
+const APP_VERSION = "a-2.3.5";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -165,16 +165,10 @@ async function fetchStatus() {
 function updateDashboard(statuses) {
     document.querySelectorAll(".status-card").forEach(card => {
 
-        const titleElement = card.querySelector("h2");
-        if (!titleElement) return;
+        const key = card.getAttribute("data-key");
+        if (!key || !statuses[key]) return;
 
-        const title = titleElement.innerText.trim();
-        const statusRaw = statuses[title];
-        if (!statusRaw) return;
-
-        const status = statusRaw.toLowerCase().trim();
-
-        card.setAttribute("data-status", status);
+        const status = statuses[key].toLowerCase().trim();
 
         // Update text
         const statusText = card.querySelector(".status-text");
@@ -207,3 +201,4 @@ function updateDashboard(statuses) {
             "Last Updated: " + new Date().toLocaleTimeString();
     }
 }
+
