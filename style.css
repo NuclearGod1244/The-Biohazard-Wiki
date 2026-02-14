@@ -47,13 +47,17 @@ h1, h2, h3 {
     color: #FFA500;
 }
 
-.status { color: lime; font-weight: bold; }
+.MODS { color: lime; font-weight: bold; }
+.MODS2 { color: lime; font-weight: bold; }
 .development { color: yellow; font-weight: bold; }
 .note { color: grey; font-weight: bold; }
 .thingy { color: pink; font-weight: bold; }
 .discord { color: cyan; font-weight: bold; }
 .creator { color: orange; font-weight: bold; }
 .creator2 { color: red; font-weight: bold; }
+.status { color: lime; font-weight: bold; }
+.status2 { color: lime; font-weight: bold; }
+.status3 { color: lime; font-weight: bold; }
 
 
 button {
