@@ -1,11 +1,11 @@
-const APP_VERSION = "a-2.3.2";
-
+const APP_VERSION = "a-2.3.3";
 let swRegistration = null;
+let deferredPrompt = null;
 
 /* ------------------------------
    External links open in new tab
 --------------------------------*/
-document.addEventListener("click", function (e) {
+document.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (!link) return;
 
@@ -18,60 +18,90 @@ document.addEventListener("click", function (e) {
 /* ------------------------------
    DOM Ready
 --------------------------------*/
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
+    // Set version
     const versionSpan = document.getElementById("app-version");
-    if (versionSpan) {
-        versionSpan.textContent = APP_VERSION;
-    }
+    if (versionSpan) versionSpan.textContent = APP_VERSION;
 
+    // Detect standalone mode
     const isApp =
         window.matchMedia('(display-mode: standalone)').matches ||
         window.navigator.standalone === true;
 
     if (isApp) {
         const appNote = document.getElementById("app-note");
-        if (appNote) {
-            appNote.style.display = "block";
-        }
+        if (appNote) appNote.style.display = "block";
     }
+
+    // Install button setup
+    const installBtn = document.getElementById("install-app");
+    if (installBtn) {
+        installBtn.addEventListener("click", async () => {
+            if (!deferredPrompt) return;
+
+            deferredPrompt.prompt();
+            const result = await deferredPrompt.userChoice;
+
+            if (result.outcome === "accepted") {
+                console.log("User installed the app");
+            }
+
+            deferredPrompt = null;
+            installBtn.style.display = "none";
+        });
+    }
+
+    // Fetch status immediately
+    fetchStatus();
+
+    // Auto refresh every 30 seconds (optional)
+    setInterval(fetchStatus, 30000);
+});
+
+/* ------------------------------
+   Before Install Prompt
+--------------------------------*/
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    const installBtn = document.getElementById("install-app");
+    if (installBtn) installBtn.style.display = "block";
 });
 
 /* ------------------------------
    Service Worker Registration
 --------------------------------*/
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', async () => {
-
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
         try {
-            swRegistration = await navigator.serviceWorker.register('./service-worker.js');
+            swRegistration = await navigator.serviceWorker.register("./service-worker.js");
 
-            // If there's already a waiting update
             if (swRegistration.waiting) {
                 showUpdatePopup();
             }
 
-            // Detect new updates
-            swRegistration.addEventListener('updatefound', () => {
-
+            swRegistration.addEventListener("updatefound", () => {
                 const newWorker = swRegistration.installing;
 
-                newWorker.addEventListener('statechange', () => {
-
+                newWorker.addEventListener("statechange", () => {
                     if (
-                        newWorker.state === 'installed' &&
+                        newWorker.state === "installed" &&
                         navigator.serviceWorker.controller
                     ) {
                         showUpdatePopup();
                     }
-
                 });
             });
 
         } catch (error) {
-            console.log('SW failed:', error);
+            console.log("SW failed:", error);
         }
+    });
 
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
     });
 }
 
@@ -79,8 +109,6 @@ if ('serviceWorker' in navigator) {
    Update Popup
 --------------------------------*/
 function showUpdatePopup() {
-
-    // Prevent multiple popups
     if (document.getElementById("update-popup")) return;
 
     const popup = document.createElement("div");
@@ -106,104 +134,76 @@ function showUpdatePopup() {
     document.body.appendChild(popup);
 
     document.getElementById("refresh-app").addEventListener("click", () => {
-
-        if (swRegistration && swRegistration.waiting) {
+        if (swRegistration?.waiting) {
             swRegistration.waiting.postMessage("SKIP_WAITING");
         }
-
     });
 }
 
 /* ------------------------------
-   Reload When New SW Takes Control
+   Fetch Status
 --------------------------------*/
-navigator.serviceWorker.addEventListener("controllerchange", () => {
-    window.location.reload();
-});
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
+async function fetchStatus() {
+    try {
+        const response = await fetch("/status.json?" + Date.now(), {
+            cache: "no-store"
+        });
 
-    // Show your install button
-    const installBtn = document.getElementById("install-app");
-    if (installBtn) {
-        installBtn.style.display = "block";
+        if (!response.ok) throw new Error("Status file not found");
+
+        const data = await response.json();
+        updateDashboard(data);
+
+    } catch (error) {
+        console.error("Failed to fetch status:", error);
     }
-});
-const installBtn = document.getElementById("install-app");
+}
 
-if (installBtn) {
-    installBtn.addEventListener("click", async () => {
-        if (!deferredPrompt) return;
+/* ------------------------------
+   Update Dashboard
+--------------------------------*/
+function updateDashboard(statuses) {
+    document.querySelectorAll(".status-card").forEach(card => {
 
-        deferredPrompt.prompt();
-        const result = await deferredPrompt.userChoice;
+        const titleElement = card.querySelector("h2");
+        if (!titleElement) return;
 
-        if (result.outcome === "accepted") {
-            console.log("User installed the app");
+        const title = titleElement.innerText.trim();
+        const statusRaw = statuses[title];
+        if (!statusRaw) return;
+
+        const status = statusRaw.toLowerCase().trim();
+
+        card.setAttribute("data-status", status);
+
+        // Update text
+        const statusText = card.querySelector(".status-text");
+        if (statusText) {
+            statusText.innerText =
+                status.charAt(0).toUpperCase() + status.slice(1);
         }
 
-        deferredPrompt = null;
+        // Update indicator
+        const indicator = card.querySelector(".status-indicator");
+        if (indicator) {
+            indicator.style.width = "14px";
+            indicator.style.height = "14px";
+            indicator.style.borderRadius = "50%";
+            indicator.style.margin = "10px auto";
+
+            if (status === "operational") {
+                indicator.style.background = "#00ff66";
+            } else if (status === "warning") {
+                indicator.style.background = "#ffaa00";
+            } else if (status === "critical") {
+                indicator.style.background = "#ff0033";
+            }
+        }
     });
-}
 
-async function fetchStatus() {
-  try {
-    const response = await fetch(
-      "/status.json?" + Date.now(),
-      { cache: "no-store" }
-    );
-
-    const data = await response.json();
-    updateDashboard(data);
-
-  } catch (error) {
-    console.error("Failed to fetch status:", error);
-  }
-}
-
-
-
-function updateDashboard(statuses) {
-  document.querySelectorAll(".status-card").forEach(card => {
-
-    const titleElement = card.querySelector("h2");
-    if (!titleElement) return;
-
-    const title = titleElement.innerText;
-    if (statuses[title]) {
-  card.setAttribute("data-status", statuses[title]);
-
-  const statusText = card.querySelector(".status-text");
-  if (statusText) {
-    statusText.innerText =
-      statuses[title].charAt(0).toUpperCase() +
-      statuses[title].slice(1);
-  }
-
-  const statusIndicator = card.querySelector(".status-indicator");
-
-  if (statusIndicator) {
-    const statusValue = statuses[title].toLowerCase().trim();
-
-    if (statusValue === "operational") {
-      statusIndicator.style.background = "#00ff66";
-    } else if (statusValue === "warning") {
-      statusIndicator.style.background = "#ffaa00";
-    } else if (statusValue === "critical") {
-      statusIndicator.style.background = "#ff0033";
+    const lastUpdated = document.getElementById("last-updated");
+    if (lastUpdated) {
+        lastUpdated.innerText =
+            "Last Updated: " + new Date().toLocaleTimeString();
     }
-  }
-}
-
-  });
-
-  const now = new Date();
-  const lastUpdated = document.getElementById("last-updated");
-
-  if (lastUpdated) {
-    lastUpdated.innerText =
-      "Last Updated: " + now.toLocaleTimeString();
-  }
 }
