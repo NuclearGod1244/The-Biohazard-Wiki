@@ -1,4 +1,4 @@
-const CACHE_NAME = "biohazard-cache-a2.3";
+const CACHE_NAME = "biohazard-cache-a2.3.1";
 
 const FILES_TO_CACHE = [
     "./style.css",

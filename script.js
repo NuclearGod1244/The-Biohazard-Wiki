@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.3";
+const APP_VERSION = "a-2.3.1";
 
 let swRegistration = null;
 
@@ -166,41 +166,41 @@ async function fetchStatus() {
 
 
 function updateDashboard(statuses) {
-  // Loop through each status card and update it based on the fetched data
   document.querySelectorAll(".status-card").forEach(card => {
-    const title = card.querySelector("h2").innerText;
 
-    // Check if the title matches the key in the JSON object
+    const titleElement = card.querySelector("h2");
+    if (!titleElement) return;
+
+    const title = titleElement.innerText;
+
     if (statuses[title]) {
       card.setAttribute("data-status", statuses[title]);
-      card.querySelector(".status-text").innerText =
-        statuses[title].charAt(0).toUpperCase() + statuses[title].slice(1);
 
-      // Set the status indicator color based on status
+      const statusText = card.querySelector(".status-text");
+      if (statusText) {
+        statusText.innerText =
+          statuses[title].charAt(0).toUpperCase() +
+          statuses[title].slice(1);
+      }
+
       const statusIndicator = card.querySelector(".status-indicator");
-
-      if (statuses[title] === "operational") {
-        statusIndicator.style.background = "#00ff66"; // Green
-      } else if (statuses[title] === "warning") {
-        statusIndicator.style.background = "#ffaa00"; // Yellow
-      } else if (statuses[title] === "critical") {
-        statusIndicator.style.background = "#ff0033"; // Red
+      if (statusIndicator) {
+        if (statuses[title] === "Operational") {
+          statusIndicator.style.background = "#00ff66";
+        } else if (statuses[title] === "Warning") {
+          statusIndicator.style.background = "#ffaa00";
+        } else if (statuses[title] === "Critical") {
+          statusIndicator.style.background = "#ff0033";
+        }
       }
     }
   });
 
-// Update the timestamp
-const now = new Date();
-const lastUpdated = document.getElementById("last-updated");
+  const now = new Date();
+  const lastUpdated = document.getElementById("last-updated");
 
-if (lastUpdated) {
-  lastUpdated.innerText =
-    "Last Updated: " + now.toLocaleTimeString();
+  if (lastUpdated) {
+    lastUpdated.innerText =
+      "Last Updated: " + now.toLocaleTimeString();
+  }
 }
-
-
-// Run the initial fetch
-fetchStatus();
-
-// Auto-refresh every 30 seconds
-setInterval(fetchStatus, 30000);

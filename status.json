@@ -1,5 +1,5 @@
 {
-  "Website Status": "Operational",
-  "App Status": "Operational",
-  "Functions": "Operational"
+  "Website Status": "Warning",
+  "App Status": "Critical",
+  "Functions": "Warning"
 }
