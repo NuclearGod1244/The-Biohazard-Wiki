@@ -5,9 +5,9 @@
 
   "issues": [
     {
-      "title": "Status Issue",
-      "description": "System isn't working correctly.",
-      "severity": "Critical"
+      "title": "All good!",
+      "description": "No issues reported.",
+      "severity": "Operational"
     }
   ]
 }
