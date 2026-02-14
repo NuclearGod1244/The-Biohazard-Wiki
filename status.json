@@ -1,5 +1,13 @@
 {
   "Website Status": "Operational",
   "App Status": "Operational",
-  "Functions": "Operational"
+  "Functions": "Operational",
+
+  "issues": [
+    {
+      "title": "Status Issue",
+      "description": "System isn't working correctly.",
+      "severity": "Critical"
+    }
+  ]
 }
