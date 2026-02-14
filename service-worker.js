@@ -33,28 +33,17 @@ self.addEventListener("activate", event => {
 /* FETCH */
 self.addEventListener("fetch", event => {
 
-
   if (event.request.url.includes("status.json")) {
     event.respondWith(fetch(event.request));
     return;
   }
 
-
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      fetch(event.request)
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
   );
 });
+
 
 
 /* MESSAGE */

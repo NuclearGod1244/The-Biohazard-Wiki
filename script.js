@@ -172,28 +172,31 @@ function updateDashboard(statuses) {
     if (!titleElement) return;
 
     const title = titleElement.innerText;
-
     if (statuses[title]) {
-      card.setAttribute("data-status", statuses[title]);
+  card.setAttribute("data-status", statuses[title]);
 
-      const statusText = card.querySelector(".status-text");
-      if (statusText) {
-        statusText.innerText =
-          statuses[title].charAt(0).toUpperCase() +
-          statuses[title].slice(1);
-      }
+  const statusText = card.querySelector(".status-text");
+  if (statusText) {
+    statusText.innerText =
+      statuses[title].charAt(0).toUpperCase() +
+      statuses[title].slice(1);
+  }
 
-      const statusIndicator = card.querySelector(".status-indicator");
-      if (statusIndicator) {
-        if (statuses[title] === "Operational") {
-          statusIndicator.style.background = "#00ff66";
-        } else if (statuses[title] === "Warning") {
-          statusIndicator.style.background = "#ffaa00";
-        } else if (statuses[title] === "Critical") {
-          statusIndicator.style.background = "#ff0033";
-        }
-      }
+  const statusIndicator = card.querySelector(".status-indicator");
+
+  if (statusIndicator) {
+    const statusValue = statuses[title].toLowerCase().trim();
+
+    if (statusValue === "operational") {
+      statusIndicator.style.background = "#00ff66";
+    } else if (statusValue === "warning") {
+      statusIndicator.style.background = "#ffaa00";
+    } else if (statusValue === "critical") {
+      statusIndicator.style.background = "#ff0033";
     }
+  }
+}
+
   });
 
   const now = new Date();
