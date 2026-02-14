@@ -52,6 +52,8 @@ h1, h2, h3 {
 .note { color: grey; font-weight: bold; }
 .thingy { color: pink; font-weight: bold; }
 .discord { color: cyan; font-weight: bold; }
+.creator { color: orange; font-weight: bold; }
+.creator2 { color: red; font-weight: bold; }
 
 /* ===== BUTTONS ===== */
 button {
@@ -79,3 +81,4 @@ button:active {
     left: 15px;
     z-index: 1000;
 }
+
