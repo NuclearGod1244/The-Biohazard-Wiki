@@ -1,7 +1,10 @@
+const APP_VERSION = "a-2.1.5";
 
-const APP_VERSION = "a-2.1.4";
+let swRegistration = null;
 
-
+/* ------------------------------
+   External links open in new tab
+--------------------------------*/
 document.addEventListener("click", function (e) {
     const link = e.target.closest("a");
     if (!link) return;
@@ -12,16 +15,16 @@ document.addEventListener("click", function (e) {
     }
 });
 
-
+/* ------------------------------
+   DOM Ready
+--------------------------------*/
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Insert version number
     const versionSpan = document.getElementById("app-version");
     if (versionSpan) {
         versionSpan.textContent = APP_VERSION;
     }
 
-  
     const isApp =
         window.matchMedia('(display-mode: standalone)').matches ||
         window.navigator.standalone === true;
@@ -34,35 +37,54 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
+/* ------------------------------
+   Service Worker Registration
+--------------------------------*/
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js')
-      .then(registration => {
+    window.addEventListener('load', async () => {
 
-        registration.update(); // optional
+        try {
+            swRegistration = await navigator.serviceWorker.register('./service-worker.js');
 
-        registration.onupdatefound = () => {
-          const newWorker = registration.installing;
-
-          newWorker.onstatechange = () => {
-            if (
-              newWorker.state === 'installed' &&
-              navigator.serviceWorker.controller
-            ) {
-              showUpdatePopup();
+            // If there's already a waiting update
+            if (swRegistration.waiting) {
+                showUpdatePopup();
             }
-          };
-        };
 
-      })
-      .catch(error => console.log('SW failed:', error));
-  });
+            // Detect new updates
+            swRegistration.addEventListener('updatefound', () => {
+
+                const newWorker = swRegistration.installing;
+
+                newWorker.addEventListener('statechange', () => {
+
+                    if (
+                        newWorker.state === 'installed' &&
+                        navigator.serviceWorker.controller
+                    ) {
+                        showUpdatePopup();
+                    }
+
+                });
+            });
+
+        } catch (error) {
+            console.log('SW failed:', error);
+        }
+
+    });
 }
 
-
+/* ------------------------------
+   Update Popup
+--------------------------------*/
 function showUpdatePopup() {
+
+    // Prevent multiple popups
+    if (document.getElementById("update-popup")) return;
+
     const popup = document.createElement("div");
+    popup.id = "update-popup";
 
     popup.style.position = "fixed";
     popup.style.bottom = "20px";
@@ -83,14 +105,18 @@ function showUpdatePopup() {
 
     document.body.appendChild(popup);
 
-   document.getElementById("refresh-app").addEventListener("click", () => {
-    if (newWorker) {
-        newWorker.postMessage("SKIP_WAITING");
-    }
-});
+    document.getElementById("refresh-app").addEventListener("click", () => {
 
+        if (swRegistration && swRegistration.waiting) {
+            swRegistration.waiting.postMessage("SKIP_WAITING");
+        }
+
+    });
 }
 
+/* ------------------------------
+   Reload When New SW Takes Control
+--------------------------------*/
 navigator.serviceWorker.addEventListener("controllerchange", () => {
     window.location.reload();
 });
