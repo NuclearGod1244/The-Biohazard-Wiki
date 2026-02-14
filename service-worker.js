@@ -1,4 +1,4 @@
-const CACHE_NAME = "biohazard-cache-a2.2.8";
+const CACHE_NAME = "biohazard-cache-a2.2.9";
 
 const FILES_TO_CACHE = [
     "./style.css",
@@ -33,7 +33,13 @@ self.addEventListener("activate", event => {
 /* FETCH */
 self.addEventListener("fetch", event => {
 
-  // Always network-first for HTML
+
+  if (event.request.url.includes("status.json")) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request)
@@ -42,13 +48,14 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // Cache-first for assets
+
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
     })
   );
 });
+
 
 /* MESSAGE */
 self.addEventListener("message", event => {
