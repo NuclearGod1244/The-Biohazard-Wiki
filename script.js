@@ -1,5 +1,5 @@
 
-const APP_VERSION = "2.0.7";
+const APP_VERSION = "2.0.8";
 
 
 document.addEventListener("click", function (e) {
@@ -38,19 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js').then(registration => {
 
+        // Force check for updates every time page loads
+        registration.update();
+
         registration.onupdatefound = () => {
-            const newWorker = registration.installing;
+            newWorker = registration.installing;
 
             newWorker.onstatechange = () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-
+                if (
+                    newWorker.state === 'installed' &&
+                    navigator.serviceWorker.controller
+                ) {
                     showUpdatePopup();
-
                 }
             };
         };
     });
 }
+
 function showUpdatePopup() {
     const popup = document.createElement("div");
 
