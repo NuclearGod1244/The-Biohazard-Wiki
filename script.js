@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.4";
+const APP_VERSION = "a-2.4.1";
 let swRegistration = null;
 let deferredPrompt = null;
 

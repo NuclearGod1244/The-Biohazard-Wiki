@@ -167,3 +167,10 @@ button:active {
     background: rgba(0, 255, 102, 0.15);
     border-left: 4px solid #00ff66;
 }
+.changelog-entry {
+    background: #1f1f2e;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+}
