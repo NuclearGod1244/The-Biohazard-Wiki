@@ -5,9 +5,10 @@
 
   "issues": [
     {
-      "title": "All good!",
-      "description": "No issues reported.",
+      "title": "None",
+      "description": "There are no known issues.",
       "severity": "Operational"
     }
   ]
 }
+
