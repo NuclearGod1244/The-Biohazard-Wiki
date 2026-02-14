@@ -8,7 +8,7 @@
       "title": "Update System Issue",
       "description": "Update System is a little buggy on the app.",
       "severity": "Warning"
-    }
+    },
     {
       "title": "Reload Glitch",
       "description": "Using Ctrl + Shift + R may break the Update System, only use Ctrl + R until I get this fixed.",
@@ -16,5 +16,6 @@
     }
   ]
 }
+
 
 
