@@ -1,6 +1,6 @@
 {
   "Website Status": "Operational",
-  "App Status": "Warning",
+  "App Status": "Critical",
   "Functions": "Operational",
 
   "issues": [
@@ -12,6 +12,11 @@
     {
       "title": "Reload Glitch",
       "description": "Using Ctrl + Shift + R may break the Update System, only use Ctrl + R until I get this fixed. Temporary fix: Open DevTools (Ctrl + Shift + i) and go to Applications, under Service Worker, click unregister on any request, then reload the app.",
+      "severity": "Critical"
+    },
+    {
+      "title": "Test",
+      "description": "Status is being tested.",
       "severity": "Critical"
     }
   ]
