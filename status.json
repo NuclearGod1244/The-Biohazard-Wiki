@@ -1,13 +1,13 @@
 {
   "Website Status": "Operational",
-  "App Status": "Operational",
+  "App Status": "Warning",
   "Functions": "Operational",
 
   "issues": [
     {
-      "title": "None",
-      "description": "There are no known issues.",
-      "severity": "Operational"
+      "title": "Update System Issue",
+      "description": "Update System is a little buggy on the app.",
+      "severity": "Warning"
     }
   ]
 }
