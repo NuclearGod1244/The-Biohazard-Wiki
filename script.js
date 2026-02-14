@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.1.5";
+const APP_VERSION = "a-2.1.6";
 
 let swRegistration = null;
 
