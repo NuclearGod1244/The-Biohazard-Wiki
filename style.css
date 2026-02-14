@@ -1,4 +1,4 @@
-/* ===== GLOBAL ===== */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -7,13 +7,13 @@ body {
     text-align: center;
 }
 
-/* ===== HEADER ===== */
+
 .header {
     background: linear-gradient(to right, #6a11cb, #2575fc);
     padding: 30px;
 }
 
-/* ===== MENU ===== */
+
 .menu {
     display: flex;
     flex-wrap: wrap;
@@ -27,14 +27,14 @@ body {
     text-decoration: none;
 }
 
-/* ===== CONTENT AREA ===== */
+
 .content {
     max-width: 900px;
     margin: 40px auto;
     padding: 20px;
 }
 
-/* ===== INFO BOX ===== */
+
 .info {
     background: #1f1f2e;
     margin: 25px 0;
@@ -42,7 +42,7 @@ body {
     border-radius: 15px;
 }
 
-/* ===== TEXT COLORS ===== */
+
 h1, h2, h3 {
     color: #FFA500;
 }
@@ -55,7 +55,7 @@ h1, h2, h3 {
 .creator { color: orange; font-weight: bold; }
 .creator2 { color: red; font-weight: bold; }
 
-/* ===== BUTTONS ===== */
+
 button {
     background: linear-gradient(to right, #6a11cb, #2575fc);
     border: none;
@@ -74,11 +74,14 @@ button:active {
     transform: scale(0.95);
 }
 
-/* ===== BACK BUTTON ===== */
+
 .back-btn {
     position: fixed;
     top: 15px;
     left: 15px;
     z-index: 1000;
+}
+.app-only {
+    display: none;
 }
 
