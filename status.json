@@ -11,7 +11,7 @@
     },
     {
       "title": "Reload Glitch",
-      "description": "Using Ctrl + Shift + R may break the Update System, only use Ctrl + R until I get this fixed.",
+      "description": "Using Ctrl + Shift + R may break the Update System, only use Ctrl + R until I get this fixed. Temporary fix: Open DevTools (Ctrl + Shift + i) and go to Applications, under Service Worker, click unregister on any request, then reload the app.",
       "severity": "Critical"
     }
   ]
