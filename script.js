@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.3.5";
+const APP_VERSION = "a-2.3.6 - ONGOING ISSUE";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -145,7 +145,7 @@ function showUpdatePopup() {
 --------------------------------*/
 async function fetchStatus() {
     try {
-        const response = await fetch("/status.json?" + Date.now(), {
+        const response = await fetch("./status.json?" + Date.now(), {
             cache: "no-store"
         });
 
