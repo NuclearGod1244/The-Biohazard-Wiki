@@ -10,3 +10,5 @@ I went in and organized the code and added some style to the pages, I'm still tr
 I'm going to do a few more changes before I make this an official release 2.
 
 I have labels in code blocks so I can keep track of what is what.
+
+I have the version as Alpha and not Version, because the site is far from finished, and I'm always coming up with new ideas as I go.
