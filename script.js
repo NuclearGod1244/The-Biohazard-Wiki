@@ -131,20 +131,38 @@ window.addEventListener('beforeinstallprompt', (e) => {
         installBtn.style.display = "block";
     }
 });
-document.getElementById("install-app").addEventListener("click", async () => {
-    if (!deferredPrompt) return;
+const installBtn = document.getElementById("install-app");
 
-    deferredPrompt.prompt();
+if (installBtn) {
+    installBtn.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
 
-    const result = await deferredPrompt.userChoice;
+        deferredPrompt.prompt();
+        const result = await deferredPrompt.userChoice;
 
-    if (result.outcome === "accepted") {
-        console.log("User installed the app");
-    }
+        if (result.outcome === "accepted") {
+            console.log("User installed the app");
+        }
 
-    deferredPrompt = null;
-});
-const STATUS_URL = "https://raw.githubusercontent.com/nucleargod1244/The-Biohazard-Wiki/main/status.json";
+        deferredPrompt = null;
+    });
+}
+
+async function fetchStatus() {
+  try {
+    const response = await fetch(
+      "https://raw.githubusercontent.com/nucleargod1244/The-Biohazard-Wiki/main/status.json?" + Date.now(),
+      { cache: "no-store" }
+    );
+
+    const data = await response.json();
+    updateDashboard(data);
+  } catch (error) {
+    console.error("Failed to fetch status:", error);
+  }
+}
+
+
 
 async function fetchStatus() {
   try {
