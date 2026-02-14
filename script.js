@@ -1,5 +1,5 @@
 
-const APP_VERSION = "2.0.8";
+const APP_VERSION = "2.0.9";
 
 
 document.addEventListener("click", function (e) {
@@ -82,3 +82,4 @@ function showUpdatePopup() {
         window.location.reload();
     });
 }
+
