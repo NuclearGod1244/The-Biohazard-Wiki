@@ -36,25 +36,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
 
-        // Force check for updates every time page loads
-        registration.update();
+        registration.update(); // optional
 
         registration.onupdatefound = () => {
-            newWorker = registration.installing;
+          const newWorker = registration.installing;
 
-            newWorker.onstatechange = () => {
-                if (
-                    newWorker.state === 'installed' &&
-                    navigator.serviceWorker.controller
-                ) {
-                    showUpdatePopup();
-                }
-            };
+          newWorker.onstatechange = () => {
+            if (
+              newWorker.state === 'installed' &&
+              navigator.serviceWorker.controller
+            ) {
+              showUpdatePopup();
+            }
+          };
         };
-    });
+
+      })
+      .catch(error => console.log('SW failed:', error));
+  });
 }
+
 
 function showUpdatePopup() {
     const popup = document.createElement("div");
