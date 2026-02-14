@@ -1,4 +1,4 @@
-const CACHE_NAME = "biohazard-cache-a2.1.9";
+const CACHE_NAME = "biohazard-cache-a2.2";
 
 const FILES_TO_CACHE = [
     "./",
@@ -41,12 +41,31 @@ self.addEventListener("activate", event => {
 
 /* ---------------- FETCH ---------------- */
 self.addEventListener("fetch", event => {
+
+  if (event.request.mode === "navigate") {
+    // Network first for HTML
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, copy);
+          });
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Cache first for everything else (CSS, JS, etc.)
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
     })
   );
 });
+
 
 /* ---------------- MESSAGE ---------------- */
 self.addEventListener("message", event => {
