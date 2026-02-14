@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.2.3";
+const APP_VERSION = "a-2.2.4";
 
 let swRegistration = null;
 
@@ -119,4 +119,28 @@ function showUpdatePopup() {
 --------------------------------*/
 navigator.serviceWorker.addEventListener("controllerchange", () => {
     window.location.reload();
+});
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Show your install button
+    const installBtn = document.getElementById("install-app");
+    if (installBtn) {
+        installBtn.style.display = "block";
+    }
+});
+document.getElementById("install-app").addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    const result = await deferredPrompt.userChoice;
+
+    if (result.outcome === "accepted") {
+        console.log("User installed the app");
+    }
+
+    deferredPrompt = null;
 });
