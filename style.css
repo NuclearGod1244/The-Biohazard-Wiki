@@ -1,0 +1,81 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    text-align: center;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    padding: 30px;
+}
+
+/* ===== MENU ===== */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    background: #1f1f1f;
+    padding: 15px;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+/* ===== CONTENT AREA ===== */
+.content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* ===== INFO BOX ===== */
+.info {
+    background: #1f1f2e;
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* ===== TEXT COLORS ===== */
+h1, h2, h3 {
+    color: #FFA500;
+}
+
+.status { color: lime; font-weight: bold; }
+.development { color: yellow; font-weight: bold; }
+.note { color: grey; font-weight: bold; }
+.thingy { color: pink; font-weight: bold; }
+.discord { color: cyan; font-weight: bold; }
+
+/* ===== BUTTONS ===== */
+button {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: 0.15s ease;
+}
+
+button:hover {
+    background: #ADD8E6;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+}

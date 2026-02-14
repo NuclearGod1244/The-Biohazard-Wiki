@@ -1,180 +1,49 @@
-<button onclick="history.back()" class="btn back-btn">
-    ← Back
-</button>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>The Biohazard Wiki</title>
+    <meta charset="UTF-8">
+    <title>Moderation Status - The Biohazard Wiki</title>
+
     <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#4B4BDC">
-
-</head>
-<script>
-document.addEventListener("click", function(e) {
-  let link = e.target.closest("a");
-  if (!link) return;
-
-  let isExternal = link.hostname !== window.location.hostname;
-  if (isExternal) {
-    link.target = "_blank";
-    link.rel = "noopener";
-  }
-});
-</script>
-<body>
+    <meta name="theme-color" content="#4B4BDC">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/BiohazardPFPOfficial.png">
-</body>
-<style>
-.back-btn {
-    position: fixed;   /* stays on screen */
-    top: 15px;         /* distance from top */
-    left: 15px;        /* distance from left */
-
-    z-index: 1000;     /* stays above other stuff */
-}
-
-.status {
-    color: lime;      
-    font-weight: bold;  
-}
-.status2 {
-    color: lime;      
-    font-weight: bold;  
-}
-
-
-body {
-    text-align: center;
-}
-.development {
-    color: yellow;
-    font-weight: bold;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #FFA500;   
-}
-
-p {
-    color: #eeeeee;   
-}
-
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #121212;
-    color: white;
-}
-
-/* Header */
-.header {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    padding: 30px;
-    text-align: center;
-}
-
-/* Menu */
-.menu {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    background: #1f1f1f;
-    padding: 15px;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.menu a:hover {
-    color: #00ffcc;
-}
-
-/* Card */
-.card {
-    background: #1f1f2e;
-    width: 300px;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-/* Buttons */
-button {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
-button:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 5px black inset;
-    
-    
-button:hover {
-    background: #ADD8E6;
-}
-
-</style>
 </head>
 
 <body>
+
+<button onclick="history.back()" class="back-btn">← Back</button>
 
 <div class="header">
-    <h1>Moderation Operations</h1>
+    <h1>Moderation Status</h1>
 </div>
-
-
-</body>
-</html>
 
 <div class="menu">
-    
-    <a href="index.html">
-        <button>Home</button>
-    </a>
+    <a href="index.html"><button>Home</button></a>
+    <a href="lore.html"><button>Lore</button></a>
+    <a href="adminstatus.html"><button>Moderation Status</button></a>
+    <a href="gamestatuses.html"><button>Game Statuses</button></a>
+    <a href="howtoapply.html"><button>How to Apply</button></a>
 
-    <a href="lore.html">
-        <button>Lore</button>
-    </a>
+    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about"><button>Roblox Group</button></a>
+    <a href="https://discord.gg/bRZqFCWw"><button>Discord Server</button></a>
+    <a href="https://dyno.gg/form/d226278f"><button>Report Issues</button></a>
+</div>
 
-    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about">
-        <button>Roblox Group</button>
-    </a>
-    
-    <a href="https://discord.gg/bRZqFCWw">
-        <button>Discord Server</button>
-    </a>
-    
-    <a href="adminstatus.html">
-        <button>Moderation Status</button>
-    </a>
-    
-    <a href="gamestatuses.html">
-        <button>Game Statuses</button>
-    </a>
-    
-    <a href="howtoapply.html">
-        <button>How to Apply</button>
-    </a>
+<div class="content">
 
-    <a href="https://dyno.gg/form/d226278f">
-        <button>Report issues</button>
-    </a>
+    <div class="info">
+        <h2>Server Moderation Status</h2>
+        <p>Status: <span class="status">Active</span></p>
+    </div>
+
+    <div class="info">
+        <h2>Recent Updates</h2>
+        <p>No recent moderation issues reported.</p>
+    </div>
 
 </div>
-<div class="info">
-    <h2>In-Game Moderation Operations</h2>
-    <p>Status: <span class="status">Operational</span></p>
-</div>
-<div class="info">
-    <h2>Discord Server Moderation Operations</h2>
-    <p>Status: <span class="status2">Operational</span></p>
-</div>
+
+<script src="script.js"></script>
+</body>
+</html>
