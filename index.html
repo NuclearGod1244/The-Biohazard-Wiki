@@ -5,6 +5,18 @@
 <meta name="theme-color" content="#4B4BDC">
 
 </head>
+<script>
+document.addEventListener("click", function(e) {
+  let link = e.target.closest("a");
+  if (!link) return;
+
+  let isExternal = link.hostname !== window.location.hostname;
+  if (isExternal) {
+    link.target = "_blank";
+    link.rel = "noopener";
+  }
+});
+</script>
 <body>
     <h1>The Biohazard Wiki</h1>
     <h2>The Biohazard Wiki is a website that is used for finding information about The Biohazard community and games.</h2>
@@ -16,6 +28,7 @@
     <p>The Biohazard Wiki GitHub Page: <span class="thingy">https://github.com/NuclearGod1244/The-Biohazard-Wiki</span></p>
     <p>Discord server: <span class="discord">https://discord.gg/bRZqFCWw</span></p>
     <link rel="icon" href="images/BiohazardPFPOfficial.png">
+    
 </body>
 </html>
 
@@ -150,11 +163,11 @@ button:hover {
         <button>Lore</button>
     </a>
 
-    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about" target="_blank">
+    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about">
         <button>Roblox Group</button>
     </a>
     
-    <a href="https://discord.gg/bRZqFCWw" target="_blank">
+    <a href="https://discord.gg/bRZqFCWw">
         <button>Discord Server</button>
     </a>
     

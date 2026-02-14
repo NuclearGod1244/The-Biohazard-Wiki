@@ -8,6 +8,18 @@
 <meta name="theme-color" content="#4B4BDC">
 
 </head>
+<script>
+document.addEventListener("click", function(e) {
+  let link = e.target.closest("a");
+  if (!link) return;
+
+  let isExternal = link.hostname !== window.location.hostname;
+  if (isExternal) {
+    link.target = "_blank";
+    link.rel = "noopener";
+  }
+});
+</script>
 <body>
     <link rel="icon" href="images/BiohazardPFPOfficial.png">
 </body>
@@ -150,11 +162,11 @@ button:hover {
         <button>Lore</button>
     </a>
 
-    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about" target="_blank">
+    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about">
         <button>Roblox Group</button>
     </a>
     
-    <a href="https://discord.gg/bRZqFCWw" target="_blank">
+    <a href="https://discord.gg/bRZqFCWw">
         <button>Discord Server</button>
     </a>
     
@@ -180,7 +192,7 @@ button:hover {
     <p>Playable: <span class="OS1">Yes</span></p>
     <p>Active Updates: <span class="OS2">No</span></p>
     <p>Development Finished: <span class="OS3">Yes</span></p>
-<a href="https://www.roblox.com/games/70788580405797/SeaWorld-Orlando-Orca-Stadium-OS" target="_blank">
+<a href="https://www.roblox.com/games/70788580405797/SeaWorld-Orlando-Orca-Stadium-OS">
         <button>Game Link</button>
     </a>
 </div>
@@ -189,7 +201,7 @@ button:hover {
     <p>Playable: <span class="OS1">Yes</span></p>
     <p>Active Updates: <span class="OS2">No</span></p>
     <p>Development Finished: <span class="OS3">Yes</span></p>
-<a href="https://www.roblox.com/games/123867076053939/SeaWorld-Explosion-Aftermath" target="_blank">
+<a href="https://www.roblox.com/games/123867076053939/SeaWorld-Explosion-Aftermath">
         <button>Game Link</button>
     </a>
 </div>
@@ -200,7 +212,7 @@ button:hover {
     <p>Development Finished: <span class="BB3">No</span></p>
 
 <a href="">
-        <a href="error.html" target="_blank">
+        <a href="error.html">
         <button>This game is not public yet</button>
     </a>
     

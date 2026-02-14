@@ -9,6 +9,18 @@
 <meta name="theme-color" content="#4B4BDC">
 
 </head>
+<script>
+document.addEventListener("click", function(e) {
+  let link = e.target.closest("a");
+  if (!link) return;
+
+  let isExternal = link.hostname !== window.location.hostname;
+  if (isExternal) {
+    link.target = "_blank";
+    link.rel = "noopener";
+  }
+});
+</script>
 <body>
     <link rel="icon" href="images/BiohazardPFPOfficial.png">
 </body>
@@ -131,11 +143,11 @@ button:hover {
         <button>Lore</button>
     </a>
 
-    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about" target="_blank">
+    <a href="https://www.roblox.com/communities/35213141/The-Biohazard#!/about">
         <button>Roblox Group</button>
     </a>
     
-    <a href="https://discord.gg/bRZqFCWw" target="_blank">
+    <a href="https://discord.gg/bRZqFCWw">
         <button>Discord Server</button>
     </a>
     
