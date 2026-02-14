@@ -138,3 +138,28 @@ button:active {
     opacity: 0.7;
     margin-bottom: 10px;
 }
+.current-issues {
+    margin: 40px auto;
+    max-width: 800px;
+    padding: 20px;
+    background: #1f1f2e;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.issue-item {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.issue-item.warning {
+    background: rgba(255, 170, 0, 0.15);
+    border-left: 4px solid #ffaa00;
+}
+
+.issue-item.critical {
+    background: rgba(255, 0, 51, 0.15);
+    border-left: 4px solid #ff0033;
+}

@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.3.8";
+const APP_VERSION = "a-2.3.9";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -205,6 +205,30 @@ function updateDashboard(statuses) {
             }
         }
     });
+    const issuesContainer = document.getElementById("issues-container");
+
+    if (issuesContainer) {
+        issuesContainer.innerHTML = "";
+
+        if (statuses.issues && statuses.issues.length > 0) {
+
+            statuses.issues.forEach(issue => {
+
+                const div = document.createElement("div");
+                div.classList.add("issue-item", issue.severity.toLowerCase());
+
+                div.innerHTML = `
+                    <strong>${issue.title}</strong>
+                    <p>${issue.description}</p>
+                `;
+
+                issuesContainer.appendChild(div);
+            });
+
+        } else {
+            issuesContainer.innerHTML = "<p>No current issues 🎉</p>";
+        }
+    }
 
     const lastUpdated = document.getElementById("last-updated");
     if (lastUpdated) {
