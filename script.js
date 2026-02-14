@@ -1,5 +1,5 @@
 
-const APP_VERSION = "2.0.3";
+const APP_VERSION = "2.0.4";
 
 
 document.addEventListener("click", function (e) {
@@ -34,9 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js');
-}
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js').then(registration => {
 
