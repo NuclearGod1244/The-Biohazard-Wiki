@@ -1,4 +1,5 @@
-const CACHE_NAME = "biohazard-cache-a2.1.7";
+const CACHE_NAME = "biohazard-cache-a2.1.8";
+
 const FILES_TO_CACHE = [
     "./",
     "./error.html",
@@ -12,16 +13,18 @@ const FILES_TO_CACHE = [
     "./manifest.json"
 ];
 
-
-
+/* ---------------- INSTALL ---------------- */
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(FILES_TO_CACHE);
+    }).then(() => {
+      return self.skipWaiting(); // 🔥 FORCE ACTIVATE ASAP
     })
   );
 });
 
+/* ---------------- ACTIVATE ---------------- */
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -32,18 +35,22 @@ self.addEventListener("activate", event => {
           }
         })
       )
-    )
+    ).then(() => self.clients.claim())
   );
 });
 
+/* ---------------- FETCH ---------------- */
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
 
-
-
+/* ---------------- MESSAGE ---------------- */
 self.addEventListener("message", event => {
   if (event.data === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
-
-
-
