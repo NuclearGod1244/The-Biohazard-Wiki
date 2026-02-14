@@ -130,8 +130,9 @@ button:active {
 }
 
 .status-card[data-status="critical"] {
-    animation: pulse 1.5s infinite;
+    animation: criticalPulse 1.2s infinite;
 }
+
 
 #last-updated {
     font-size: 0.9em;
@@ -176,20 +177,13 @@ button:active {
 }
 @keyframes criticalPulse {
     0% {
-        color: #ff3b3b;
-        text-shadow: 0 0 5px #ff3b3b;
+        box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
     }
     50% {
-        color: #ff0000;
-        text-shadow: 0 0 20px #ff0000;
+        box-shadow: 0 0 30px rgba(255, 0, 51, 0.9);
     }
     100% {
-        color: #ff3b3b;
-        text-shadow: 0 0 5px #ff3b3b;
+        box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
     }
 }
 
-.status-critical {
-    animation: criticalPulse 1s infinite;
-    text-shadow: 0 0 30px #ff0000;
-}
