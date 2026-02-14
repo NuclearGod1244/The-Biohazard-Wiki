@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.3.6 - ONGOING ISSUE";
+const APP_VERSION = "a-2.3.7 - Pre-Patch";
 let swRegistration = null;
 let deferredPrompt = null;
 

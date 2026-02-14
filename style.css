@@ -117,26 +117,22 @@ button:active {
     margin: 10px auto;
 }
 
-.status-card[data-status="Operational"] .status-indicator {
+.status-card[data-status="operational"] .status-indicator {
     background: #00ff66;
 }
 
-.status-card[data-status="Warning"] .status-indicator {
+.status-card[data-status="warning"] .status-indicator {
     background: #ffaa00;
 }
 
-.status-card[data-status="Critical"] .status-indicator {
+.status-card[data-status="critical"] .status-indicator {
     background: #ff0033;
 }
-@keyframes pulse {
-    0% { box-shadow: 0 0 10px #ff0033; }
-    50% { box-shadow: 0 0 25px #ff0033; }
-    100% { box-shadow: 0 0 10px #ff0033; }
-}
 
-.status-card[data-status="Critical"] {
+.status-card[data-status="critical"] {
     animation: pulse 1.5s infinite;
 }
+
 #last-updated {
     font-size: 0.9em;
     opacity: 0.7;
