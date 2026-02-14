@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.2.7";
+const APP_VERSION = "a-2.2.8";
 
 let swRegistration = null;
 
@@ -151,30 +151,19 @@ if (installBtn) {
 async function fetchStatus() {
   try {
     const response = await fetch(
-      "https://raw.githubusercontent.com/nucleargod1244/The-Biohazard-Wiki/main/status.json?" + Date.now(),
+      "/status.json?" + Date.now(),
       { cache: "no-store" }
     );
 
     const data = await response.json();
     updateDashboard(data);
+
   } catch (error) {
     console.error("Failed to fetch status:", error);
   }
 }
 
 
-
-async function fetchStatus() {
-  try {
-    const response = await fetch(STATUS_URL);
-    const data = await response.json();
-
-    // Update dashboard with the new data
-    updateDashboard(data);
-  } catch (error) {
-    console.error("Failed to fetch status:", error);
-  }
-}
 
 function updateDashboard(statuses) {
   // Loop through each status card and update it based on the fetched data
@@ -200,11 +189,15 @@ function updateDashboard(statuses) {
     }
   });
 
-  // Update the timestamp
-  const now = new Date();
-  document.getElementById("last-updated").innerText =
+// Update the timestamp
+const now = new Date();
+const lastUpdated = document.getElementById("last-updated");
+
+if (lastUpdated) {
+  lastUpdated.innerText =
     "Last Updated: " + now.toLocaleTimeString();
 }
+
 
 // Run the initial fetch
 fetchStatus();
