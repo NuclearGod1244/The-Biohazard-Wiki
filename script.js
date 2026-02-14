@@ -1,5 +1,5 @@
 
-const APP_VERSION = "2.0.9";
+const APP_VERSION = "2.1";
 
 
 document.addEventListener("click", function (e) {
