@@ -1,14 +1,17 @@
 const CACHE_NAME = "biohazard-cache-a2.0.8";
 const FILES_TO_CACHE = [
-  "/error.html",
-  "/index.html",
-  "/lore.html",
-  "/adminstatus.html",
-  "/gamestatuses.html",
-  "/howtoapply.html",
-  "/style.css",
-  "/script.js"
+    "./",
+    "./error.html",
+    "./index.html",
+    "./lore.html",
+    "./adminstatus.html",
+    "./gamestatuses.html",
+    "./howtoapply.html",
+    "./style.css",
+    "./script.js",
+    "./manifest.json"
 ];
+
 
 
 self.addEventListener("install", event => {
