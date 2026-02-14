@@ -1,39 +1,48 @@
-const CACHE_NAME = "biohazard-cache-a2.4.5";
+const CACHE_NAME = "biohazard-cache-a2.4.6";
 
 const FILES_TO_CACHE = [
     "./",
+    "./index.html",
     "./style.css",
     "./script.js",
     "./manifest.json"
 ];
 
+
 /* ------------------------------
    INSTALL
 --------------------------------*/
 self.addEventListener("install", event => {
+  self.skipWaiting();
+
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(FILES_TO_CACHE))
-      .then(() => self.skipWaiting())
   );
 });
+
 
 /* ------------------------------
    ACTIVATE
 --------------------------------*/
 self.addEventListener("activate", event => {
+
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
+    caches.keys().then(keys => {
+      return Promise.all(
         keys.map(key => {
           if (key !== CACHE_NAME) {
+            console.log("Deleting old cache:", key);
             return caches.delete(key);
           }
+          return Promise.resolve();
         })
-      )
-    ).then(() => self.clients.claim())
+      );
+    }).then(() => self.clients.claim())
   );
+
 });
+
 
 /* ------------------------------
    FETCH
@@ -45,20 +54,28 @@ self.addEventListener("fetch", event => {
   // 🚀 NEVER cache status.json
   if (requestURL.pathname.endsWith("status.json")) {
     event.respondWith(
-      fetch(event.request, {
-        cache: "no-store"
-      })
+      fetch(event.request, { cache: "no-store" })
     );
     return;
   }
 
-  // Normal cache-first for everything else
+  // Network-first for HTML (prevents stale page)
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  // Cache-first for assets
   event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      return cachedResponse || fetch(event.request);
-    })
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
   );
+
 });
+
 
 /* ------------------------------
    MESSAGE

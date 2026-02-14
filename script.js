@@ -1,10 +1,16 @@
-const APP_VERSION = "a-2.4.5";
+/* ==============================
+   CONFIG
+============================== */
+
+const APP_VERSION = "a-2.4.6";
 let swRegistration = null;
 let deferredPrompt = null;
 
-/* ------------------------------
-   External links open in new tab
---------------------------------*/
+
+/* ==============================
+   OPEN EXTERNAL LINKS IN NEW TAB
+============================== */
+
 document.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (!link) return;
@@ -15,12 +21,14 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/* ------------------------------
-   DOM Ready
---------------------------------*/
+
+/* ==============================
+   DOM READY
+============================== */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Set version
+    // Show version
     const versionSpan = document.getElementById("app-version");
     if (versionSpan) versionSpan.textContent = APP_VERSION;
 
@@ -34,18 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (appNote) appNote.style.display = "block";
     }
 
-    // Install button setup
+    // Install button
     const installBtn = document.getElementById("install-app");
     if (installBtn) {
         installBtn.addEventListener("click", async () => {
             if (!deferredPrompt) return;
 
             deferredPrompt.prompt();
-            const result = await deferredPrompt.userChoice;
-
-            if (result.outcome === "accepted") {
-                console.log("User installed the app");
-            }
+            await deferredPrompt.userChoice;
 
             deferredPrompt = null;
             installBtn.style.display = "none";
@@ -55,13 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fetch status immediately
     fetchStatus();
 
-    // Auto refresh every 30 seconds (optional)
+    // Auto refresh status every 30 sec
     setInterval(fetchStatus, 30000);
 });
 
-/* ------------------------------
-   Before Install Prompt
---------------------------------*/
+
+/* ==============================
+   BEFORE INSTALL PROMPT
+============================== */
+
 window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
@@ -70,18 +76,22 @@ window.addEventListener("beforeinstallprompt", (e) => {
     if (installBtn) installBtn.style.display = "block";
 });
 
-/* ------------------------------
-   Service Worker Registration
---------------------------------*/
+
+/* ==============================
+   SERVICE WORKER REGISTRATION
+============================== */
+
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", async () => {
         try {
             swRegistration = await navigator.serviceWorker.register("./service-worker.js");
 
+            // If already waiting
             if (swRegistration.waiting) {
                 showUpdatePopup();
             }
 
+            // Detect new updates
             swRegistration.addEventListener("updatefound", () => {
                 const newWorker = swRegistration.installing;
 
@@ -95,19 +105,22 @@ if ("serviceWorker" in navigator) {
                 });
             });
 
-        } catch (error) {
-            console.log("SW failed:", error);
+        } catch (err) {
+            console.error("Service Worker failed:", err);
         }
     });
 
+    // Reload when new SW activates
     navigator.serviceWorker.addEventListener("controllerchange", () => {
         window.location.reload();
     });
 }
 
-/* ------------------------------
-   Update Popup
---------------------------------*/
+
+/* ==============================
+   UPDATE POPUP
+============================== */
+
 function showUpdatePopup() {
 
     if (document.getElementById("update-popup")) return;
@@ -138,22 +151,17 @@ function showUpdatePopup() {
 
         if (!swRegistration) return;
 
-        swRegistration.update().then(() => {
-            if (swRegistration.waiting) {
-                swRegistration.waiting.postMessage("SKIP_WAITING");
-            } else {
-                // fallback if waiting worker already activated
-                window.location.reload();
-            }
-        });
-
+        if (swRegistration.waiting) {
+            swRegistration.waiting.postMessage("SKIP_WAITING");
+        }
     });
 }
 
 
-/* ------------------------------
-   Fetch Status
---------------------------------*/
+/* ==============================
+   FETCH STATUS
+============================== */
+
 async function fetchStatus() {
     try {
         const response = await fetch("./status.json?" + Date.now(), {
@@ -170,10 +178,14 @@ async function fetchStatus() {
     }
 }
 
-/* ------------------------------
-   Update Dashboard
---------------------------------*/
+
+/* ==============================
+   UPDATE DASHBOARD
+============================== */
+
 function updateDashboard(statuses) {
+
+    // Update service cards
     document.querySelectorAll(".status-card").forEach(card => {
 
         const key = card.getAttribute("data-key");
@@ -181,30 +193,18 @@ function updateDashboard(statuses) {
 
         const status = statuses[key].toLowerCase().trim();
 
+        // Set data-status for CSS animations
+        card.setAttribute("data-status", status);
+
         // Update text
         const statusText = card.querySelector(".status-text");
         if (statusText) {
             statusText.innerText =
                 status.charAt(0).toUpperCase() + status.slice(1);
         }
-
-        // Update indicator
-        const indicator = card.querySelector(".status-indicator");
-        if (indicator) {
-            indicator.style.width = "14px";
-            indicator.style.height = "14px";
-            indicator.style.borderRadius = "50%";
-            indicator.style.margin = "10px auto";
-
-            if (status === "operational") {
-                indicator.style.background = "#00ff66";
-            } else if (status === "warning") {
-                indicator.style.background = "#ffaa00";
-            } else if (status === "critical") {
-                indicator.style.background = "#ff0033";
-            }
-        }
     });
+
+    // Render current issues
     const issuesContainer = document.getElementById("issues-container");
 
     if (issuesContainer) {
@@ -230,6 +230,7 @@ function updateDashboard(statuses) {
         }
     }
 
+    // Update timestamp
     const lastUpdated = document.getElementById("last-updated");
     if (lastUpdated) {
         lastUpdated.innerText =
