@@ -1,4 +1,4 @@
-const CACHE_NAME = "biohazard-cache-a2.1";
+const CACHE_NAME = "biohazard-cache-a2.1.1";
 const FILES_TO_CACHE = [
     "./",
     "./error.html",
@@ -36,11 +36,7 @@ self.addEventListener("activate", event => {
   );
 });
 
-self.addEventListener("message", event => {
-  if (event.data === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
+
 
 
 self.addEventListener("message", event => {
@@ -48,5 +44,6 @@ self.addEventListener("message", event => {
     self.skipWaiting();
   }
 });
+
 
 

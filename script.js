@@ -1,5 +1,5 @@
 
-const APP_VERSION = "2.1";
+const APP_VERSION = "2.1.1";
 
 
 document.addEventListener("click", function (e) {
@@ -83,8 +83,14 @@ function showUpdatePopup() {
 
     document.body.appendChild(popup);
 
-    document.getElementById("refresh-app").addEventListener("click", () => {
-        window.location.reload();
-    });
+   document.getElementById("refresh-app").addEventListener("click", () => {
+    if (newWorker) {
+        newWorker.postMessage("SKIP_WAITING");
+    }
+});
+
 }
 
+navigator.serviceWorker.addEventListener("controllerchange", () => {
+    window.location.reload();
+});
