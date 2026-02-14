@@ -1,6 +1,6 @@
 {
   "Website Status": "Operational",
-  "App Status": "Warning",
+  "App Status": "Critical",
   "Functions": "Operational",
 
   "issues": [
