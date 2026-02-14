@@ -1,4 +1,4 @@
-const CACHE_NAME = "biohazard-cache-a2.0.1";
+const CACHE_NAME = "biohazard-cache-a2.0.2";
 const FILES_TO_CACHE = [
   "/error.html",
   "/index.html",
