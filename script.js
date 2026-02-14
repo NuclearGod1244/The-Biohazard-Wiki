@@ -1,4 +1,4 @@
-const APP_VERSION = "a-2.3.7 - Pre-Patch";
+const APP_VERSION = "a-2.3.8";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -109,6 +109,7 @@ if ("serviceWorker" in navigator) {
    Update Popup
 --------------------------------*/
 function showUpdatePopup() {
+
     if (document.getElementById("update-popup")) return;
 
     const popup = document.createElement("div");
@@ -134,11 +135,21 @@ function showUpdatePopup() {
     document.body.appendChild(popup);
 
     document.getElementById("refresh-app").addEventListener("click", () => {
-        if (swRegistration?.waiting) {
-            swRegistration.waiting.postMessage("SKIP_WAITING");
-        }
+
+        if (!swRegistration) return;
+
+        swRegistration.update().then(() => {
+            if (swRegistration.waiting) {
+                swRegistration.waiting.postMessage("SKIP_WAITING");
+            } else {
+                // fallback if waiting worker already activated
+                window.location.reload();
+            }
+        });
+
     });
 }
+
 
 /* ------------------------------
    Fetch Status
@@ -201,4 +212,3 @@ function updateDashboard(statuses) {
             "Last Updated: " + new Date().toLocaleTimeString();
     }
 }
-
