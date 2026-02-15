@@ -2,7 +2,7 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.5.1";
+const APP_VERSION = "b-2.6.1";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -240,7 +240,7 @@ function applyGlobalStatus(status) {
 ============================== */
 
 function updateDashboard(statuses) {
-    
+
     const path = window.location.pathname;
 
     let globalStatus;
