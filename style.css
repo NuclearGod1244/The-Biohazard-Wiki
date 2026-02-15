@@ -174,15 +174,17 @@ button:active {
     border-radius: 15px;
     text-align: left;
 }
+.status-critical {
+  color: #ff2b2b;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: criticalPulse 1.2s infinite;
+}
+
 @keyframes criticalPulse {
-    0% {
-        box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
-    }
-    50% {
-        box-shadow: 0 0 35px rgba(255, 0, 51, 0.9);
-    }
-    100% {
-        box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
-    }
+  0% { text-shadow: 0 0 5px rgba(255,43,43,0.6); }
+  50% { text-shadow: 0 0 20px rgba(255,43,43,1); }
+  100% { text-shadow: 0 0 5px rgba(255,43,43,0.6); }
 }
 
