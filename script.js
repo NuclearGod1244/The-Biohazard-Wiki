@@ -2,7 +2,7 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.7.0";
+const APP_VERSION = "b-2.7.1";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -30,17 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show version
     const versionSpan = document.getElementById("app-version");
-    if (versionSpan) versionSpan.textContent = APP_VERSION;
 
-    // Detect standalone mode
-    const isApp =
-        window.matchMedia('(display-mode: standalone)').matches ||
-        window.navigator.standalone === true;
+    if (versionSpan) {
+        const isApp =
+            window.matchMedia('(display-mode: standalone)').matches ||
+            window.navigator.standalone === true;
 
-    if (isApp) {
-        const appNote = document.getElementById("app-note");
-        if (appNote) appNote.style.display = "block";
+        versionSpan.textContent = APP_VERSION;
+
+        const label = document.getElementById("version-label");
+        if (label) {
+            label.textContent = isApp ? "App Version:" : "Web Version:";
+        }
     }
+
 
     // Install button
     const installBtn = document.getElementById("install-app");
