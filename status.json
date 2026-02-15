@@ -3,13 +3,7 @@
   "App Status": "Operational",
   "Functions": "Operational",
 
-  "issues": [
-    {
-      "title": "Update System Note",
-      "description": "When you check for updates, hit ctrl + r ONCE; wait a few seconds and if an update is available, a pop up will appear. If you click the update button, but nothing happens, use ctrl + shift r.",
-      "severity": "Operational"
-    }
-  ]
+  "issues": []
 }
 
 
