@@ -178,14 +178,81 @@ async function fetchStatus() {
     }
 }
 
+/* ==============================
+   GLOBAL STATUS BANNER
+============================== */
+
+function ensureGlobalBanner() {
+    let banner = document.getElementById("global-status-banner");
+
+    if (!banner) {
+        banner = document.createElement("div");
+        banner.id = "global-status-banner";
+        banner.className = "hidden";
+        document.body.prepend(banner);
+    }
+
+    return banner;
+}
+
+function applyGlobalStatus(status) {
+
+    const banner = ensureGlobalBanner();
+
+    banner.classList.remove(
+        "hidden",
+        "banner-warning",
+        "banner-critical"
+    );
+
+    document.body.classList.remove(
+        "warning-mode",
+        "critical-mode"
+    );
+
+    if (!status) return;
+
+    const normalized = status.toLowerCase().trim();
+
+    if (normalized === "warning") {
+
+        banner.textContent =
+            "⚠️ WARNING: Minor stability issue(s)";
+
+        banner.classList.add("banner-warning");
+        document.body.classList.add("warning-mode");
+
+    } else if (normalized === "critical") {
+
+        banner.textContent =
+            "🚨 CRITICAL: Major stability issue(s)";
+
+        banner.classList.add("banner-critical");
+        document.body.classList.add("critical-mode");
+
+    } else {
+        banner.classList.add("hidden");
+    }
+}
 
 /* ==============================
    UPDATE DASHBOARD
 ============================== */
 
 function updateDashboard(statuses) {
+    
+    const path = window.location.pathname;
 
-    // Update service cards
+    let globalStatus;
+
+    if (path.includes("/app/")) {
+        globalStatus = statuses["App Status"];
+    } else {
+        globalStatus = statuses["Website Status"];
+    }
+
+    applyGlobalStatus(globalStatus);
+
     document.querySelectorAll(".status-card").forEach(card => {
 
         const key = card.getAttribute("data-key");
@@ -237,3 +304,4 @@ function updateDashboard(statuses) {
             "Last Updated: " + new Date().toLocaleTimeString();
     }
 }
+

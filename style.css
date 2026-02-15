@@ -187,4 +187,75 @@ button:active {
   50% { text-shadow: 0 0 20px rgba(255,43,43,1); }
   100% { text-shadow: 0 0 5px rgba(255,43,43,0.6); }
 }
+#global-status-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+.banner-warning {
+  background: #ffcc00;
+  color: #000;
+}
+.banner-critical {
+  background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
+  background-size: 200% 100%;
+  color: white;
+  animation: criticalMove 2s linear infinite;
+}
+
+@keyframes criticalMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+#global-status-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.banner-warning {
+    background: #ffcc00;
+    color: #000;
+}
+
+.banner-critical {
+    background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
+    background-size: 200% 100%;
+    color: white;
+    animation: criticalMove 2s linear infinite;
+}
+
+@keyframes criticalMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+body.warning-mode {
+    padding-top: 50px;
+}
+
+body.critical-mode {
+    padding-top: 50px;
+    background-color: #140000;
+}
 
