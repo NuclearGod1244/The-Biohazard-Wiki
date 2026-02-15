@@ -3,12 +3,8 @@ If you would like to join the Discord server, you may through this link: https:/
 
 Website link: [The Biohazard Wiki](https://nucleargod1244.github.io/The-Biohazard-Wiki/index.html)
 
-Alpha 2.2.5 Official - Changelog:
+Alpha 2.4.8 Official - Changelog
 
-I went in and organized the code and added some style to the pages, I'm still trying to patch some stuff up (I'm not a pro at this stuff so bare with me)
+Added System Status page
 
-I'm going to do a few more changes before I make this an official release 2.
-
-I have labels in code blocks so I can keep track of what is what.
-
-I have the version as Alpha and not Version, because the site is far from finished, and I'm always coming up with new ideas as I go.
+Added Changelog page 
