@@ -2,7 +2,7 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.7.2";
+const APP_VERSION = "b-2.7.5";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const label = document.getElementById("version-label");
         if (label) {
-            label.textContent = isApp ? "🏷️ App Version:" : "🏷️ Web Version:";
+            label.textContent = isApp ? "🛠️ Dev Build:" : "🛠️ Dev Build";
         }
     }
 
