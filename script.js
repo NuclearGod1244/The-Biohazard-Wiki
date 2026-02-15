@@ -2,58 +2,9 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.6.5";
+const APP_VERSION = "b-2.6.6";
 let swRegistration = null;
 let deferredPrompt = null;
-
-/* ==============================
-   SEVERITY SYSTEM
-============================== */
-
-const SEVERITY_LEVELS = {
-    operational: 0,
-    degraded: 1,
-    unstable: 2,
-    "very unstable": 3,
-    warning: 2,
-    critical: 4,
-    outage: 4,
-    catastrophic: 5
-};
-
-const SEVERITY_CLASSES = {
-    0: "operational",
-    1: "degraded",
-    2: "warning",
-    3: "very-unstable",
-    4: "critical",
-    5: "catastrophic"
-};
-function detectHighestSeverity(statuses) {
-
-    let highest = 0;
-
-    Object.values(statuses).forEach(value => {
-
-        if (typeof value === "string") {
-            const level = getSeverityLevel(value);
-            if (level > highest) highest = level;
-        }
-
-        // Also check issues array if present
-        if (Array.isArray(value)) {
-            value.forEach(item => {
-                if (item.severity) {
-                    const level = getSeverityLevel(item.severity);
-                    if (level > highest) highest = level;
-                }
-            });
-        }
-
-    });
-
-    return highest;
-}
 
 
 /* ==============================
@@ -244,7 +195,7 @@ function ensureGlobalBanner() {
     return banner;
 }
 
-function applyGlobalStatus(level) {
+function applyGlobalStatus(status) {
 
     const banner = ensureGlobalBanner();
 
@@ -259,12 +210,19 @@ function applyGlobalStatus(level) {
         "critical-mode"
     );
 
-    if (level === 0) {
-        banner.classList.add("hidden");
-        return;
-    }
+    if (!status) return;
 
-    if (level >= 4) {
+    const normalized = status.toLowerCase().trim();
+
+    if (normalized === "warning") {
+
+        banner.textContent =
+            "⚠️ WARNING: Minor stability issue(s)";
+
+        banner.classList.add("banner-warning");
+        document.body.classList.add("warning-mode");
+
+    } else if (normalized === "critical") {
 
         banner.textContent =
             "🚨 CRITICAL: Major stability issue(s)";
@@ -273,15 +231,9 @@ function applyGlobalStatus(level) {
         document.body.classList.add("critical-mode");
 
     } else {
-
-        banner.textContent =
-            "⚠️ WARNING: Minor stability issue(s)";
-
-        banner.classList.add("banner-warning");
-        document.body.classList.add("warning-mode");
+        banner.classList.add("hidden");
     }
 }
-
 
 /* ==============================
    UPDATE DASHBOARD
@@ -289,9 +241,17 @@ function applyGlobalStatus(level) {
 
 function updateDashboard(statuses) {
 
-    const highestLevel = detectHighestSeverity(statuses);
-    applyGlobalStatus(highestLevel);
+    const path = window.location.pathname;
 
+    let globalStatus;
+
+    if (path.includes("/app/")) {
+        globalStatus = statuses["App Status"];
+    } else {
+        globalStatus = statuses["Website Status"];
+    }
+
+    applyGlobalStatus(globalStatus);
 
     document.querySelectorAll(".status-card").forEach(card => {
 
@@ -322,11 +282,7 @@ function updateDashboard(statuses) {
             statuses.issues.forEach(issue => {
 
                 const div = document.createElement("div");
-                const level = getSeverityLevel(issue.severity);
-                const className = SEVERITY_CLASSES[level];
-
-                div.classList.add("issue-item", className);
-
+                div.classList.add("issue-item", issue.severity.toLowerCase());
 
                 div.innerHTML = `
                     <strong>${issue.title}</strong>
