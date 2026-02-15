@@ -3,16 +3,30 @@ If you would like to join the Discord server, you may through this link: https:/
 
 Website link: [The Biohazard Wiki](https://nucleargod1244.github.io/The-Biohazard-Wiki/index.html)
 
-Alpha 2.4.8 Official - Changelog
+
+
+Beta 2.7.0 - Official - Changelog
+
+Enhanced System Status: Critical Statuses pulse/glow.
+
+Website will become red and have an alert at the top when major issues occur; same for Warning messages, but less dramatic.
+
+If you have suggestions, post them in my Discord server in help-desk channel and use the tag "suggestion"
+
+=============================================
+
+Beta 2.5.0 - Official - Notes
+
+Switched from Alpha to Beta
+
+After I do a lot of stuff, when I feel like it's ready, I will switch it from Beta to Build (My own way of using it as 'full version' or whatever)
+
+=============================================
+
+Alpha 2.4.8 - Official - Changelog
 
 Added System Status page
 
 Added Changelog page 
 
 Note: App Version label only shows inside the app, not the website in your browser.
-
-Beta 2.5 Official - Notes
-
-Switched from Alpha to Beta
-
-After I do a lot of stuff, when I feel like it's ready, I will switch it from Beta to Build (My own way of using it as 'full version' or whatever)
