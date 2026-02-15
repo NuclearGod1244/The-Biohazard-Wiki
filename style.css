@@ -121,6 +121,10 @@ button:active {
     background: #00ff66;
 }
 
+.status-card[data-status="stable"] .status-indicator {
+    background: #00ff66;
+}
+
 .status-card[data-status="warning"] .status-indicator {
     background: #ffaa00;
 }
