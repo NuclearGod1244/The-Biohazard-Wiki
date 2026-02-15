@@ -2,7 +2,7 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.6.3";
+const APP_VERSION = "b-2.6.4";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -214,7 +214,7 @@ function applyGlobalStatus(status) {
 
     const normalized = status.toLowerCase().trim();
 
-    if (normalized === "warning" || normalized === "unstable") {
+    if (normalized === "warning") {
 
         banner.textContent =
             "⚠️ WARNING: Minor stability issue(s)";
@@ -222,7 +222,7 @@ function applyGlobalStatus(status) {
         banner.classList.add("banner-warning");
         document.body.classList.add("warning-mode");
 
-    } else if (normalized === "critical" || normalized === "very unstable") {
+    } else if (normalized === "critical") {
 
         banner.textContent =
             "🚨 CRITICAL: Major stability issue(s)";
