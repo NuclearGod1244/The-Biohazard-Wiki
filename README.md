@@ -8,3 +8,5 @@ Alpha 2.4.8 Official - Changelog
 Added System Status page
 
 Added Changelog page 
+
+Note: App Version label only shows inside the app, not the website in your browser.
