@@ -3,7 +3,13 @@
   "App Status": "Degraded",
   "Functions": "Degraded",
 
-  "issues": []
+  "issues": [
+    {
+      "title": "Test",
+      "description": "Test",
+      "severity": "Degraded"
+    }
+  ]
 }
 
 
