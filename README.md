@@ -10,3 +10,9 @@ Added System Status page
 Added Changelog page 
 
 Note: App Version label only shows inside the app, not the website in your browser.
+
+Beta 2.5 Official - Notes
+
+Switched from Alpha to Beta
+
+After I do a lot of stuff, when I feel like it's ready, I will switch it from Beta to Build (My own way of using it as 'full version' or whatever)
