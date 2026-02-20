@@ -2,7 +2,7 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.7.7";
+const APP_VERSION = "b-2.8.0";
 let swRegistration = null;
 let deferredPrompt = null;
 

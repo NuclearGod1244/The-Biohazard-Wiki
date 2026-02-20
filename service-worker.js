@@ -1,4 +1,4 @@
-const CACHE_NAME = "biohazard-cache-b2.7.7";
+const CACHE_NAME = "biohazard-cache-b2.8.0";
 
 const FILES_TO_CACHE = [
     "./",
