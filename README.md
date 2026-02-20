@@ -1,7 +1,7 @@
 The Biohazard Wiki is a website I made for our community and games, containing information and lore.
 If you would like to join the Discord server, you may through this link: https://discord.gg/aQRDkfTVpE
 
-NOTE: Every once in a while the Discord links expire, so if the link is expired from in the site, I'll post the newest one here.
+NOTE: Every once in a while the Discord links expire, so if the link is expired from in the site, I'll post the newest one here. Later I will change the link method and make it all in on page that updates automatically.
 
 Website link: [The Biohazard Wiki](https://nucleargod1244.github.io/The-Biohazard-Wiki/index.html)
 
