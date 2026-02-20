@@ -106,6 +106,15 @@ button:active {
     transition: transform 0.2s ease;
 }
 
+.discordlink {
+    background: #1f1f2e;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
 .status-card:hover {
     transform: scale(1.03);
 }
