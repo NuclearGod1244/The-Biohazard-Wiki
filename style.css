@@ -58,7 +58,7 @@ h1, h2, h3 {
 .status { color: lime; font-weight: bold; }
 .status2 { color: lime; font-weight: bold; }
 .status3 { color: lime; font-weight: bold; }
-
+.discordlink { color: cyan; font-weight: bold; }
 
 button {
     background: linear-gradient(to right, #6a11cb, #2575fc);
