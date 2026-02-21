@@ -168,7 +168,7 @@ button:active {
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    color: white;
+    color: var(--text);
     box-shadow: 0 0 15px var(--shadow);
     transition: transform 0.2s ease;
 }
@@ -287,12 +287,12 @@ button:active {
 }
 .banner-warning {
   background: #ffcc00;
-  color: #000;
+  color: var(--text);
 }
 .banner-critical {
   background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
   background-size: 200% 100%;
-  color: white;
+  color: var(--text);
   animation: criticalMove 2s linear infinite;
 }
 
@@ -318,13 +318,13 @@ button:active {
 
 .banner-warning {
     background: #ffcc00;
-    color: #000;
+    color: var(--text);
 }
 
 .banner-critical {
     background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
     background-size: 200% 100%;
-    color: white;
+    color: var(--text);
     animation: criticalMove 2s linear infinite;
 }
 
@@ -339,7 +339,7 @@ body.warning-mode {
 
 body.critical-mode {
     padding-top: 50px;
-    background-color: #140000;
+    background: var(--card-bg);
 }
 .theme-btn {
     position: fixed;
