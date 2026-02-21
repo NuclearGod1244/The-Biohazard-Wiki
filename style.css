@@ -1,26 +1,14 @@
-
-body {
-  background: radial-gradient(circle at top left, #1f1f2e, #121212);
-}
-.page {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.page.active {
-  opacity: 1;
-}
 :root {
-    --bg: #121212;
+    --bg: #0f172a;
     --text: #ffffff;
-    --menu-bg: #1f1f1f;
-    --card-bg: #1f1f2e;
-    --card-alt: #0e0b18;
-    --shadow: rgba(0,0,0,0.4);
+    --menu-bg: #1f1f2e;
+    --card-bg: #1e293b;
+    --card-alt: #172033;
+    --shadow: rgba(0,0,0,0.45);
     --header-gradient: linear-gradient(to right, #6a11cb, #2575fc);
 }
 
-/* LIGHT MODE */
+
 body.light {
     --bg: #f5f7fa;
     --text: #111111;
@@ -33,23 +21,32 @@ body.light {
 
 
 
-
-
 body {
     margin: 0;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background: radial-gradient(circle at top left, #1f1f2e, #0f172a);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(99,102,241,0.15), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(239,68,68,0.12), transparent 40%),
+        var(--bg);
     color: var(--text);
     text-align: center;
     transition: background 0.3s ease, color 0.3s ease;
 }
+
+.page {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.page.active {
+    opacity: 1;
+}
+
 
 
 .header {
     background: var(--header-gradient);
     padding: 30px;
 }
-
 
 .menu {
     display: flex;
@@ -65,12 +62,12 @@ body {
 }
 
 
+
 .content {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 40px auto;
     padding: 20px;
 }
-
 
 .info {
     background: var(--card-bg);
@@ -80,24 +77,20 @@ body {
 }
 
 
+
 h1, h2, h3 {
     color: #FFA500;
 }
 
-.MODS { color: lime; font-weight: bold; }
-.MODS2 { color: lime; font-weight: bold; }
-.development { color: yellow; font-weight: bold; }
-.note { color: grey; font-weight: bold; }
-.thingy { color: pink; font-weight: bold; }
-.discord { color: cyan; font-weight: bold; }
-.creator { color: orange; font-weight: bold; }
-.creator2 { color: red; font-weight: bold; }
-.status { color: lime; font-weight: bold; }
-.status2 { color: lime; font-weight: bold; }
-.status3 { color: lime; font-weight: bold; }
-.discordlink { color: cyan; font-weight: bold; }
-.changelog { color: rgb(255, 115, 0); font-weight: bold; }
-.changelog2 { color:rgb(104, 32, 32); font-weight: bold; }
+.status-label {
+    font-weight: 600;
+}
+
+.status-label.critical {
+    color: #ff4d4d;
+}
+
+
 
 button {
     background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -106,241 +99,129 @@ button {
     border-radius: 8px;
     cursor: pointer;
     color: white;
-    transition: 0.15s ease;
+    transition: 0.2s ease;
 }
 
 button:hover {
-    background: #ADD8E6;
+    opacity: 0.85;
 }
 
 button:active {
     transform: scale(0.95);
 }
 
-.button2 {
-    background: linear-gradient(to right, #d4a404, #d3940c);
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: rgb(32, 10, 226);
-    transition: 0.15s ease;
-}
 
-.button2:hover {
-    background: #ADD8E6;
-}
-
-.button2:active {
-    transform: scale(0.95);
-}
-.button3 {
-    background: linear-gradient(to right, #632828, #832e2e);
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    transition: 0.15s ease;
-}
-
-.button3:hover {
-    background: #ADD8E6;
-}
-
-.button3:active {
-    transform: scale(0.95);
-}
-.back-btn {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1000;
-}
-.app-only {
-    display: none;
-}
 
 .status-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
     padding: 20px;
 }
 
-.discordlink {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
+
 
 .status-card {
-    background: #1e293b;
-    border-radius: 18px;
-    padding: 28px;
-    border: 1px solid #334155;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.status-card:hover {
-    transform: translateY(-6px);
-    border-color: #475569;
-}
-
-.discordlink {
-    background: var(--card-alt);
-    padding: 20px;
-    border-radius: 15px;
+    background: linear-gradient(145deg, var(--card-bg), var(--card-alt));
+    border-radius: 22px;
+    padding: 40px 20px;
     text-align: center;
-    color: rgb(25, 129, 199);
-    box-shadow: 0 0 15px var(--shadow);
-    transition: transform 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow:
+        0 15px 35px var(--shadow),
+        inset 0 0 0 1px rgba(255,255,255,0.02);
+    transition: transform 0.3s ease, border 0.3s ease;
 }
+
 .status-card:hover {
-    transform: scale(1.03);
+    transform: translateY(-8px);
+    border-color: rgba(255,255,255,0.18);
 }
-.discord2 {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin: 10px auto;
-}
+
+
 
 .status-indicator {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    margin: 12px auto;
-    position: relative;
+    margin: 14px auto;
 }
 
 
 .status-card[data-status="operational"] .status-indicator {
     background: #22c55e;
-    box-shadow: 0 0 10px #22c55e;
+    box-shadow: 0 0 12px #22c55e;
 }
 
 
 .status-card[data-status="warning"] .status-indicator {
     background: #f59e0b;
-    box-shadow: 0 0 10px #f59e0b;
+    box-shadow: 0 0 12px #f59e0b;
 }
 
 
 .status-card[data-status="critical"] .status-indicator {
     background: #ef4444;
-    box-shadow: 0 0 10px #ef4444;
-    animation: glowPulse 1.6s infinite;
+    animation: criticalPulse 1.5s infinite;
 }
 
-@keyframes glowPulse {
+@keyframes criticalPulse {
     0% { box-shadow: 0 0 8px #ef4444; }
     50% { box-shadow: 0 0 22px #ef4444; }
     100% { box-shadow: 0 0 8px #ef4444; }
 }
 
-#last-updated {
-    font-size: 0.9em;
-    opacity: 0.7;
-    margin-bottom: 10px;
-}
+
+
 .current-issues {
     margin: 40px auto;
     max-width: 800px;
-    padding: 24px;
-
-    background: #1e293b; /* fixed modern dark */
-    border-radius: 18px;
-    border: 1px solid #334155;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    transition: 0.25s ease;
+    padding: 25px;
+    background: linear-gradient(145deg, var(--card-bg), var(--card-alt));
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 15px 40px var(--shadow);
+    transition: transform 0.3s ease;
 }
 
-.issue-item {
-    margin: 15px 0;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: left;
-}
 .current-issues:hover {
     transform: translateY(-4px);
-    border-color: #475569;
 }
+
+
+
+.issue-item {
+    border-radius: 14px;
+    padding: 15px 18px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.issue-item.operational {
+    background: rgba(34,197,94,0.1);
+    border-left: 4px solid #22c55e;
+}
+
 .issue-item.warning {
-    background: rgba(255, 170, 0, 0.15);
-    border-left: 4px solid #ffaa00;
+    background: rgba(245,158,11,0.12);
+    border-left: 4px solid #f59e0b;
 }
 
 .issue-item.critical {
-    background: rgba(255, 0, 51, 0.15);
-    border-left: 4px solid #ff0033;
-}
-.issue-item.operational {
-    background: rgba(0, 255, 102, 0.15);
-    border-left: 4px solid #00ff66;
-}
-.changelog-entry {
-    background: var(--card-bg);
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: left;
-}
-.status-critical {
-  color: #ff2b2b;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  animation: criticalPulse 1.2s infinite;
+    background: rgba(239,68,68,0.12);
+    border-left: 4px solid #ef4444;
 }
 
-@keyframes criticalPulse {
-  0% { text-shadow: 0 0 5px rgba(255,43,43,0.6); }
-  50% { text-shadow: 0 0 20px rgba(255,43,43,1); }
-  100% { text-shadow: 0 0 5px rgba(255,43,43,0.6); }
-}
-#global-status-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  font-weight: 600;
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
 
-.hidden {
-  display: none;
-}
-.banner-warning {
-  background: #ffcc00;
-  color: var(--text);
-}
-.banner-critical {
-  background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
-  background-size: 200% 100%;
-  color: var(--text);
-  animation: criticalMove 2s linear infinite;
-}
 
-@keyframes criticalMove {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
-}
 #global-status-banner {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    text-align: center;
     padding: 10px;
     font-weight: 600;
+    text-align: center;
     z-index: 9999;
     transition: all 0.3s ease;
 }
@@ -351,58 +232,34 @@ button:active {
 
 .banner-warning {
     background: #ffcc00;
-    color: var(--text);
+    color: #111;
 }
 
 .banner-critical {
     background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
     background-size: 200% 100%;
-    color: var(--text);
-    animation: criticalMove 2s linear infinite;
+    color: white;
+    animation: bannerMove 2s linear infinite;
 }
 
-@keyframes criticalMove {
+@keyframes bannerMove {
     0% { background-position: 0% 0%; }
     100% { background-position: 200% 0%; }
 }
 
-body.warning-mode {
-    padding-top: 50px;
-}
 
-body.light.critical-mode {
-    --bg: #500808;
-    --text: #ffffff;
-}
-
-body:not(.light).critical-mode {
-    --bg: #140000;
-    --text: #ffffff;
-}
-body.critical-mode .status-card {
-    border-color: rgba(239, 68, 68, 0.4);
-}
 
 body.critical-mode .header {
     background: linear-gradient(90deg, #7f1d1d, #dc2626);
 }
 
-.status-label {
-    font-weight: 600;
-    opacity: 1;
-    text-shadow: none;
-}
-.status-label.critical {
-    color: #ff4d4d;
-}
-.theme-btn {
-    position: fixed;
-    top: 15px;
-    right: 15px; 
-    z-index: 1000;
+body.critical-mode .status-card[data-status="critical"] {
+    border-color: rgba(239, 68, 68, 0.6);
+    box-shadow: 0 15px 40px rgba(120,0,0,0.6);
 }
 
-/* Container */
+
+
 #notification-container {
     position: fixed;
     top: 20px;
@@ -413,7 +270,6 @@ body.critical-mode .header {
     z-index: 9999;
 }
 
-/* Notification Card */
 .notification {
     display: flex;
     align-items: center;
@@ -425,13 +281,11 @@ body.critical-mode .header {
     background: #2b2d31;
     color: #f2f3f5;
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    backdrop-filter: blur(8px);
     transform: translateX(120%);
     opacity: 0;
     transition: all 0.35s cubic-bezier(.2,.8,.2,1);
     font-size: 0.95rem;
 }
-
 
 body.light .notification {
     background: #ffffff;
@@ -439,12 +293,10 @@ body.light .notification {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-
 .notification.show {
     transform: translateX(0);
     opacity: 1;
 }
-
 
 .notification-icon {
     width: 32px;
@@ -453,30 +305,17 @@ body.light .notification {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
 }
 
-
-.notification.success .notification-icon {
-    background: #23a559;
-}
-
-.notification.warning .notification-icon {
-    background: #faa61a;
-}
-
-.notification.critical .notification-icon {
-    background: #f23f43;
-}
-
+.notification.success .notification-icon { background: #23a559; }
+.notification.warning .notification-icon { background: #faa61a; }
+.notification.critical .notification-icon { background: #f23f43; }
 
 .notification-close {
     margin-left: auto;
     cursor: pointer;
     font-weight: bold;
     opacity: 0.6;
-    transition: 0.2s ease;
 }
 
 .notification-close:hover {
