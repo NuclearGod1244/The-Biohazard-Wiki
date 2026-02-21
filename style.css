@@ -149,11 +149,11 @@ button:active {
 }
 
 .discordlink {
-    background: #1f1f2e;
+    background: #453874;
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    color: white;
+    color: rgb(156, 84, 56);
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
     transition: transform 0.2s ease;
 }
