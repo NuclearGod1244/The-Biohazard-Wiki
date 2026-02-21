@@ -351,7 +351,7 @@ body.warning-mode {
 
 body.critical-mode {
     padding-top: 50px;
-    background: var(--card-bg);
+    --bg: linear-gradient(135deg, #1a0000, #300000);
 }
 .theme-btn {
     position: fixed;
