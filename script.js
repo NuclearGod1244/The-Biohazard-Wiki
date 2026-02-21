@@ -323,3 +323,60 @@ toggle.addEventListener("click", () => {
         localStorage.setItem("theme", "dark");
     }
 });
+function showNotification(message, type = "success", duration = 3000) {
+    const container = document.getElementById("notification-container");
+
+    const notif = document.createElement("div");
+    notif.classList.add("notification", type);
+    notif.textContent = message;
+
+    container.appendChild(notif);
+
+    setTimeout(() => {
+        notif.classList.add("show");
+    }, 10);
+
+    setTimeout(() => {
+        notif.classList.remove("show");
+        setTimeout(() => notif.remove(), 400);
+    }, duration);
+}
+function showNotification(message, type = "success", duration = 4000) {
+    const container = document.getElementById("notification-container");
+
+    const notif = document.createElement("div");
+    notif.classList.add("notification", type);
+
+    const icon = document.createElement("div");
+    icon.classList.add("notification-icon");
+
+    if (type === "success") icon.textContent = "✓";
+    if (type === "warning") icon.textContent = "!";
+    if (type === "critical") icon.textContent = "✕";
+
+    const text = document.createElement("div");
+    text.textContent = message;
+
+    const close = document.createElement("div");
+    close.classList.add("notification-close");
+    close.textContent = "×";
+
+    close.onclick = () => removeNotification(notif);
+
+    notif.appendChild(icon);
+    notif.appendChild(text);
+    notif.appendChild(close);
+
+    container.appendChild(notif);
+
+    setTimeout(() => notif.classList.add("show"), 10);
+
+    if (duration) {
+        setTimeout(() => removeNotification(notif), duration);
+    }
+}
+
+function removeNotification(notif) {
+    notif.classList.remove("show");
+    setTimeout(() => notif.remove(), 300);
+}
