@@ -358,6 +358,9 @@ body:not(.light).critical-mode {
     --bg: #140000;
     --text: #ffffff;
 }
+body.critical-mode .status-card {
+    border: 1px solid rgba(255, 0, 0, 0.3);
+}
 .theme-btn {
     position: fixed;
     top: 15px;
