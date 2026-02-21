@@ -350,7 +350,7 @@ body.warning-mode {
 }
 
 body.light.critical-mode {
-    --bg: #f06363;
+    --bg: #500808;
     --text: #ffffff;
 }
 
