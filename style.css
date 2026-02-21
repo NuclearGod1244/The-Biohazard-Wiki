@@ -321,3 +321,49 @@ body.light .notification {
 .notification-close:hover {
     opacity: 1;
 }
+.theme-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10000;
+
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+}
+.back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10000;
+
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+}
+.theme-btn,
+.back-btn {
+    top: 60px;
+}
