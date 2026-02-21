@@ -60,7 +60,7 @@ h1, h2, h3 {
 .status3 { color: lime; font-weight: bold; }
 .discordlink { color: cyan; font-weight: bold; }
 .changelog { color: rgb(255, 115, 0); font-weight: bold; }
-.changelog2 { color:rgb(104, 32, 32)); font-weight: bold; }
+.changelog2 { color:rgb(104, 32, 32); font-weight: bold; }
 
 button {
     background: linear-gradient(to right, #6a11cb, #2575fc);
