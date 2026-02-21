@@ -380,3 +380,6 @@ function removeNotification(notif) {
     notif.classList.remove("show");
     setTimeout(() => notif.remove(), 300);
 }
+document.addEventListener("DOMContentLoaded", () => {
+    showNotification("Notifications System Loaded 🚀", "success");
+});
