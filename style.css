@@ -96,6 +96,23 @@ button:active {
 .button2:active {
     transform: scale(0.95);
 }
+.button3 {
+    background: linear-gradient(to right, #632828, #832e2e);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    transition: 0.15s ease;
+}
+
+.button3:hover {
+    background: #ADD8E6;
+}
+
+.button3:active {
+    transform: scale(0.95);
+}
 .back-btn {
     position: fixed;
     top: 15px;
