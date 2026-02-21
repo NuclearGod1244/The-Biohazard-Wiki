@@ -37,8 +37,8 @@ body.light {
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--bg);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: radial-gradient(circle at top left, #1f1f2e, #0f172a);
     color: var(--text);
     text-align: center;
     transition: background 0.3s ease, color 0.3s ease;
@@ -176,13 +176,18 @@ button:active {
 }
 
 .status-card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    color: var(--text);
-    box-shadow: 0 0 15px var(--shadow);
-    transition: transform 0.2s ease;
+    background: #1e293b;
+    border-radius: 18px;
+    padding: 28px;
+    border: 1px solid #334155;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-card:hover {
+    transform: translateY(-6px);
+    border-color: #475569;
 }
 
 .discordlink {
@@ -197,14 +202,6 @@ button:active {
 .status-card:hover {
     transform: scale(1.03);
 }
-
-.status-indicator {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin: 10px auto;
-}
-
 .discord2 {
     width: 20px;
     height: 20px;
@@ -212,20 +209,37 @@ button:active {
     margin: 10px auto;
 }
 
-.status-card[data-status="operational"] .status-indicator {
-    background: #00ff66;
+.status-indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: 12px auto;
+    position: relative;
 }
+
+
+.status-card[data-status="operational"] .status-indicator {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
 
 .status-card[data-status="warning"] .status-indicator {
-    background: #ffaa00;
+    background: #f59e0b;
+    box-shadow: 0 0 10px #f59e0b;
 }
+
 
 .status-card[data-status="critical"] .status-indicator {
-    background: #ff0033;
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+    animation: glowPulse 1.6s infinite;
 }
 
-.status-card[data-status="critical"] {
-    animation: criticalPulse 1.5s infinite;
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 8px #ef4444; }
+    50% { box-shadow: 0 0 22px #ef4444; }
+    100% { box-shadow: 0 0 8px #ef4444; }
 }
 
 #last-updated {
@@ -236,10 +250,14 @@ button:active {
 .current-issues {
     margin: 40px auto;
     max-width: 800px;
-    padding: 20px;
-    background: var(--card-bg);
-    border-radius: 15px;
-    box-shadow: 0 0 15px var(--shadow);
+    padding: 24px;
+
+    background: #1e293b; /* fixed modern dark */
+    border-radius: 18px;
+    border: 1px solid #334155;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    transition: 0.25s ease;
 }
 
 .issue-item {
@@ -248,7 +266,10 @@ button:active {
     border-radius: 10px;
     text-align: left;
 }
-
+.current-issues:hover {
+    transform: translateY(-4px);
+    border-color: #475569;
+}
 .issue-item.warning {
     background: rgba(255, 170, 0, 0.15);
     border-left: 4px solid #ffaa00;
@@ -359,13 +380,13 @@ body:not(.light).critical-mode {
     --text: #ffffff;
 }
 body.critical-mode .status-card {
-    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-color: rgba(239, 68, 68, 0.4);
 }
-body.critical-mode {
-    --bg: #140000;
-    --card-bg: #1a0000;
-    --card-alt: #220000;
+
+body.critical-mode .header {
+    background: linear-gradient(90deg, #7f1d1d, #dc2626);
 }
+
 .status-label {
     font-weight: 600;
     opacity: 1;
