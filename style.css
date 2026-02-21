@@ -176,11 +176,11 @@ button:active {
 }
 
 .status-card {
-    background: var(--card-bg);
+    background: #e5e5e5 !important;
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    color: var(--text);
+    color: #111 !important;
     box-shadow: 0 0 15px var(--shadow);
     transition: transform 0.2s ease;
 }
