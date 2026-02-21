@@ -1,15 +1,9 @@
 {
   "Website Status": "Operational",
   "App Status": "Operational",
-  "Functions": "Warning",
+  "Functions": "Operational",
 
-  "issues": [
-    {
-      "title": "Testing System Statuses",
-      "description": "Making sure everything still works",
-      "severity": "Warning"
-    }
-  ]
+  "issues": []
 }
 
 
