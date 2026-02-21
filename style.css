@@ -349,13 +349,14 @@ body.warning-mode {
     padding-top: 50px;
 }
 
-body.critical-mode {
-    padding-top: 50px;
+body.light.critical-mode {
+    --bg: #f06363;
+    --text: #ffffff;
+}
 
+body:not(.light).critical-mode {
     --bg: #140000;
     --text: #ffffff;
-    --card-bg: #1a0000;
-    --card-alt: #220000;
 }
 .theme-btn {
     position: fixed;
