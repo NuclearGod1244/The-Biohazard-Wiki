@@ -79,7 +79,23 @@ button:active {
     transform: scale(0.95);
 }
 
+.button2 {
+    background: linear-gradient(to right, #d4a404, #d3940c);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: rgb(32, 10, 226);
+    transition: 0.15s ease;
+}
 
+.button2:hover {
+    background: #ADD8E6;
+}
+
+.button2:active {
+    transform: scale(0.95);
+}
 .back-btn {
     position: fixed;
     top: 15px;
