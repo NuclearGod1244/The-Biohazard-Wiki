@@ -1,15 +1,40 @@
+:root {
+    --bg: #121212;
+    --text: #ffffff;
+    --menu-bg: #1f1f1f;
+    --card-bg: #1f1f2e;
+    --card-alt: #0e0b18;
+    --shadow: rgba(0,0,0,0.4);
+    --header-gradient: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+/* LIGHT MODE */
+body.light {
+    --bg: #f5f7fa;
+    --text: #111111;
+    --menu-bg: #e4e7eb;
+    --card-bg: #ffffff;
+    --card-alt: #f0f2f5;
+    --shadow: rgba(0,0,0,0.15);
+    --header-gradient: linear-gradient(to right, #4e73df, #1cc88a);
+}
+
+
+
+
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
+    background: var(--bg);
+    color: var(--text);
     text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 
 .header {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
+    background: var(--header-gradient);
     padding: 30px;
 }
 
@@ -19,7 +44,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    background: #1f1f1f;
+    background: var(--menu-bg);
     padding: 15px;
 }
 
@@ -36,7 +61,7 @@ body {
 
 
 .info {
-    background: #1f1f2e;
+    background: var(--card-bg);
     margin: 25px 0;
     padding: 20px;
     border-radius: 15px;
@@ -139,22 +164,22 @@ button:active {
 }
 
 .status-card {
-    background: #1f1f2e;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 15px;
     text-align: center;
     color: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    box-shadow: 0 0 15px var(--shadow);
     transition: transform 0.2s ease;
 }
 
 .discordlink {
-    background: #0e0b18;
+    background: var(--card-alt);
     padding: 20px;
     border-radius: 15px;
     text-align: center;
     color: rgb(25, 129, 199);
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    box-shadow: 0 0 15px var(--shadow);
     transition: transform 0.2s ease;
 }
 .status-card:hover {
@@ -200,9 +225,9 @@ button:active {
     margin: 40px auto;
     max-width: 800px;
     padding: 20px;
-    background: #1f1f2e;
+    background: var(--card-bg);
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    box-shadow: 0 0 15px var(--shadow);
 }
 
 .issue-item {
@@ -226,7 +251,7 @@ button:active {
     border-left: 4px solid #00ff66;
 }
 .changelog-entry {
-    background: #1f1f2e;
+    background: var(--card-bg);
     margin: 20px 0;
     padding: 20px;
     border-radius: 15px;

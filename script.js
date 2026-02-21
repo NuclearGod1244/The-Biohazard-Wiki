@@ -2,7 +2,7 @@
    CONFIG
 ============================== */
 
-const APP_VERSION = "b-2.8.0";
+const APP_VERSION = "b-2.8.1";
 let swRegistration = null;
 let deferredPrompt = null;
 
@@ -308,3 +308,18 @@ function updateDashboard(statuses) {
     }
 }
 
+const toggle = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+}
+
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    if (document.body.classList.contains("light")) {
+        localStorage.setItem("theme", "light");
+    } else {
+        localStorage.setItem("theme", "dark");
+    }
+});
