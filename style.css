@@ -176,11 +176,11 @@ button:active {
 }
 
 .status-card {
-    background: #e5e5e5 !important;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    color: #111 !important;
+    color: var(--text);
     box-shadow: 0 0 15px var(--shadow);
     transition: transform 0.2s ease;
 }
@@ -360,6 +360,19 @@ body:not(.light).critical-mode {
 }
 body.critical-mode .status-card {
     border: 1px solid rgba(255, 0, 0, 0.3);
+}
+body.critical-mode {
+    --bg: #140000;
+    --card-bg: #1a0000;
+    --card-alt: #220000;
+}
+.status-label {
+    font-weight: 600;
+    opacity: 1;
+    text-shadow: none;
+}
+.status-label.critical {
+    color: #ff4d4d;
 }
 .theme-btn {
     position: fixed;
